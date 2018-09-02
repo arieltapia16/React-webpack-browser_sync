@@ -1,5 +1,5 @@
-const buildValidations = require('./build-utils/build-validations');
-const commonConfig = require('./build-utils/webpack.common');
+const buildValidations = require('./build-utilities/build-validations');
+const commonConfig = require('./build-utilities/webpack.common');
 
 const webpackMerge = require('webpack-merge');
 
@@ -13,7 +13,7 @@ const addons = (/* string | string[] */ addonsArg) => {
     .filter(Boolean); // If addons is undefined, filter it out
 
   return addons.map(addonName =>
-    require(`./build-utils/addons/webpack.${addonName}.js`)
+    require(`./build-utilities/addons/webpack.${addonName}.js`)
   );
 };
 
@@ -30,7 +30,7 @@ module.exports = env => {
   // Select which Webpack configuration to use; development 
   // or production
   // console.log(env.env); => dev
-  const envConfig = require(`./build-utils/webpack.${env.env}.js`);
+  const envConfig = require(`./build-utilities/webpack.${env.env}.js`);
 
   // 'webpack-merge' will combine our shared configurations, the 
   // environment specific configurations and any addons we are
